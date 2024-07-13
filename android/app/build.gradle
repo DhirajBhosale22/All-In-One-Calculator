@@ -74,9 +74,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.oneforall"
+    namespace "com.rsl.oneforall"
     defaultConfig {
-        applicationId "com.oneforall"
+        applicationId "com.rsl.oneforall"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

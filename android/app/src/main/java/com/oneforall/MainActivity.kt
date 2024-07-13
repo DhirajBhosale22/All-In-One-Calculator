@@ -1,4 +1,4 @@
-package com.oneforall
+package com.rsl.oneforall
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
