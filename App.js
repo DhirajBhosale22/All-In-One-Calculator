@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
   adContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 10,
+  
     backgroundColor: 'white',
   },
 });

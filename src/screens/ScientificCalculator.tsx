@@ -266,18 +266,20 @@ returnKeyType="done"
 const styles = StyleSheet.create({
 container: {
 flex: 1,
-justifyContent: 'center',
+// justifyContent: 'center',
 backgroundColor: '#000',
+
 },
 display: {
-flex: 1,
-justifyContent: 'flex-end',
-alignItems: 'flex-end',
-backgroundColor: '#000',
-padding: 15,
+    backgroundColor: 'black',
+    borderRadius: 5,
+    minHeight: 200,
+    justifyContent: 'flex-end',
+    padding: 5,
+   
 },
 displayText: {
-fontSize: 30,
+fontSize: 25,
 color: '#FFF',
 textAlign: 'right',
 },
@@ -289,6 +291,7 @@ textAlign: 'right',
 buttonsContainer: {
 justifyContent: 'flex-end',
 alignItems: 'flex-end',
+marginBottom:5,
 },
 row: {
 flexDirection: 'row',
@@ -298,14 +301,15 @@ button: {
 flex: 1,
 justifyContent: 'center',
 alignItems: 'center',
-paddingVertical: 10,
-margin: 5,
+padding: 8,
+margin: 3,
 borderWidth: 1,
 borderColor: '#333',
 borderRadius: 5,
+
 },
 buttonText: {
-fontSize: 15,
+fontSize: 18,
 color: '#ffa500',
 },
 operatorButton: {
