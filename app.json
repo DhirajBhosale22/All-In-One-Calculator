@@ -1,0 +1,9 @@
+{
+  "name": "OneForAll",
+  "displayName": "OneForAll",
+  
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-4761293324240417~2268811086",
+    "ios_app_id": "ca-app-pub-4761293324240417~2268811086"
+  }
+}
