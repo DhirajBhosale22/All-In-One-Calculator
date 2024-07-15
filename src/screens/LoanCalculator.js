@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { SafeAreaView, Text, TextInput, View, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
+import { SafeAreaView, Text, TextInput, View, StyleSheet, TouchableOpacity, FlatList, Alert} from 'react-native';
 
 const LoanCalculator = ({ navigation }) => {
   const [emi, setEmi] = useState('');
@@ -75,10 +75,13 @@ const LoanCalculator = ({ navigation }) => {
     const chargesNumber = parseFloat(charges) || 0;
 
     if (
-      !isNaN(emiNumber) &&
-      !isNaN(annualRateNumber) &&
-      (yearsNumber > 0 || monthsNumber > 0)
-    ) {
+      isNaN(emiNumber) ||
+      isNaN(annualRateNumber) ||
+      (yearsNumber <= 0 && monthsNumber <= 0)
+    )  {
+      Alert.alert('Invalid input', 'Please fill all input fields correctly.');
+      return;
+    }
       const totalMonths = yearsNumber * 12 + monthsNumber;
       const monthlyRate = annualRateNumber / 12 / 100;
 
@@ -114,10 +117,7 @@ const LoanCalculator = ({ navigation }) => {
         totalAmount: Math.round(totalAmount ),
       });
       setPaymentChart(paymentChartData);
-    } else {
-      setResult('Invalid input');
-      setPaymentChart([]);
-    }
+    
   };
 
   const clearAll = () => {

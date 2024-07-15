@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { SafeAreaView, Text, TextInput, View, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
+import { SafeAreaView, Text, TextInput, View, StyleSheet, TouchableOpacity, FlatList, Alert } from 'react-native';
 
 const InterestCalculator = ({ navigation }) => {
   const [emi, setEmi] = useState('');
@@ -68,10 +68,13 @@ const InterestCalculator = ({ navigation }) => {
     const monthsNumber = parseInt(months) || 0;
 
     if (
-      !isNaN(emiNumber) &&
-      !isNaN(loanAmountNumber) &&
-      (yearsNumber > 0 || monthsNumber > 0)
+      isNaN(emiNumber) ||
+      isNaN(loanAmountNumber) ||
+      yearsNumber <= 0 && monthsNumber <= 0
     ) {
+      Alert.alert('Invalid input', 'Please fill all input fields correctly.');
+      return;
+    }
       const totalMonths = yearsNumber * 12 + monthsNumber;
 
       // Iteratively calculate the monthly interest rate
@@ -115,10 +118,7 @@ const InterestCalculator = ({ navigation }) => {
         totalAmount: Math.round(totalAmount ),
       });
       setPaymentChart(paymentChartData);
-    } else {
-      setResult('Invalid input');
-      setPaymentChart([]);
-    }
+    
   };
 
   const clearAll = () => {

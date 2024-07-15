@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { SafeAreaView, Text, TextInput, View, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
+import { SafeAreaView, Text, TextInput, View, StyleSheet, TouchableOpacity, FlatList, Alert } from 'react-native';
 
 const LoanTenure = ({ navigation }) => {
   const [emi, setEmi] = useState('');
@@ -94,7 +94,8 @@ const LoanTenure = ({ navigation }) => {
       });
       setPaymentChart(paymentChartData);
     } else {
-      setResult('Invalid input');
+      Alert.alert('Invalid input', 'Please fill all input fields correctly.');
+      setResult(null);
       setPaymentChart([]);
     }
   };

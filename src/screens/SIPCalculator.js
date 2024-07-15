@@ -71,7 +71,7 @@ const SIPCalculator = () => {
     const n = parseFloat(timePeriod) * 12;
 
     if (isNaN(P) || isNaN(r) || isNaN(n)) {
-      alert('Please fill in all the fields correctly.');
+      alert('Please fil all input fields correctly.');
       return;
     }
 
