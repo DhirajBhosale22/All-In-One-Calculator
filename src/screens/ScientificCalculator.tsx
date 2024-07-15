@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
+import React, { useState, useMemo} from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, TextInput, ScrollView } from 'react-native';
 
 const ScientificCalculator = () => {
 const [input, setInput] = useState('');
@@ -177,56 +177,68 @@ setIsDeg(!isDeg);
 };
 
 return (
-<View style={styles.container}>
-<View style={styles.display}>
-<Text style={styles.expressionText}>{expression}</Text>
-<TextInput
-style={styles.displayText}
-value={input}
-onChangeText={setInput}
-keyboardType="numeric"
-returnKeyType="done"
-/>
-</View>
+    <View style={styles.container}>
+      <View style={styles.displayContainer}>
+      <ScrollView style={styles.scrollView}>
+        <View style={styles.display}>
+          <Text style={styles.expressionText}>{expression}</Text>
+          <TextInput
+          value={input}
+          onChangeText={handleInput}
+          placeholder="0"
+          placeholderTextColor="#ccc"
+          style={styles.input}
+          multiline={true}
+          numberOfLines={4}
+          keyboardType="numeric"
+          showSoftInputOnFocus={false}
+          textAlignVertical="bottom"
+          autoCapitalize="none"
+          autoFocus={true}
+          
+        />
+        </View>
+        </ScrollView>
+      </View>
+
 <View style={styles.buttonsContainer}>
 <View style={styles.row}>
-{renderButton('sin', () => handleTrigFunction('sin'), styles.secondaryButton)}
-{renderButton('cos', () => handleTrigFunction('cos'), styles.secondaryButton)}
-{renderButton('tan', () => handleTrigFunction('tan'), styles.secondaryButton)}
-<View style={[styles.button, styles.secondaryButton]}>
-<Text style={styles.buttonText}>Deg/Rad</Text>
+{renderButton('sin', () => handleTrigFunction('sin'), { flex: 1 })}
+{renderButton('cos', () => handleTrigFunction('cos'), { flex: 1 })}
+{renderButton('tan', () => handleTrigFunction('tan'), { flex: 1 })}
+<View style={[styles.button, { flex: 1 }]}>
 <TouchableOpacity onPress={handleDegRadToggle}>
 <Text style={styles.buttonText}>{isDeg ? 'Deg' : 'Rad'}</Text>
 </TouchableOpacity>
 </View>
 </View>
 <View style={styles.row}>
-{renderButton('sin⁻¹', () => handleTrigFunction('sin-1'), styles.secondaryButton)}
-{renderButton('cos⁻¹', () => handleTrigFunction('cos-1'), styles.secondaryButton)}
-{renderButton('tan⁻¹', () => handleTrigFunction('tan-1'), styles.secondaryButton)}
-{renderButton('π', () => handleInput('π'), styles.secondaryButton)}
-{renderButton('e', () => setInput(prevInput => prevInput + Math.E.toString()), styles.secondaryButton)}
+{renderButton('sin⁻¹', () => handleTrigFunction('sin-1'), { flex: 1 })}
+{renderButton('cos⁻¹', () => handleTrigFunction('cos-1'), { flex: 1 })}
+{renderButton('tan⁻¹', () => handleTrigFunction('tan-1'), { flex: 1 })}
+{renderButton('π', () => handleInput('π'),{ flex: 1 })}
+{renderButton('e', () => setInput(prevInput => prevInput + Math.E.toString()), { flex: 1 })}
 </View>
 <View style={styles.row}>
-{renderButton('xʸ', () => handleOperation('x^y'), styles.secondaryButton)}
-{renderButton('x³', () => setInput(prevInput => prevInput + '**3'), styles.secondaryButton)}
-{renderButton('x²', () => setInput(prevInput => prevInput + '**2'), styles.secondaryButton)}
-{renderButton('eˣ', () => handleTrigFunction('exp'), styles.secondaryButton)}
-{renderButton('10ˣ', () => setInput(prevInput => prevInput + '10**'), styles.secondaryButton)}
+{renderButton('xʸ', () => handleOperation('x^y'), { flex: 1 })}
+{renderButton('x³', () => setInput(prevInput => prevInput + '**3'), { flex: 1 })}
+{renderButton('x²', () => setInput(prevInput => prevInput + '**2'), { flex: 1 })}
+{renderButton('eˣ', () => handleTrigFunction('exp'), { flex: 1 })}
+{renderButton('10ˣ', () => setInput(prevInput => prevInput + '10**'), { flex: 1 })}
 </View>
 <View style={styles.row}>
-{renderButton('ʸ√x', () => setInput(prevInput => prevInput + '**(1/'), styles.secondaryButton)}
-{renderButton('³√x', () => handleTrigFunction('³√'), styles.secondaryButton)}
-{renderButton('√x', () => handleTrigFunction('sqrt', '√'), styles.secondaryButton)}
-{renderButton('ln', () => handleTrigFunction('ln'), styles.secondaryButton)}
-{renderButton('log', () => handleTrigFunction('log'), styles.secondaryButton)}
+{renderButton('ʸ√x', () => setInput(prevInput => prevInput + '**(1/'), { flex: 1 })}
+{renderButton('³√x', () => handleTrigFunction('³√'), { flex: 1 })}
+{renderButton('√x', () => handleTrigFunction('sqrt', '√'), { flex: 1 })}
+{renderButton('ln', () => handleTrigFunction('ln'), { flex: 1 })}
+{renderButton('log', () => handleTrigFunction('log'), { flex: 1 })}
 </View>
 <View style={styles.row}>
 {renderButton('(', () => handleInput('('))}
 {renderButton(')', () => handleInput(')'))}
-{renderButton('1/x', () => handleTrigFunction('1/'), styles.secondaryButton)}
-{renderButton('%', () => handleOperation('%'), styles.secondaryButton)}
-{renderButton('x!', () => handleOperation('x!'), styles.secondaryButton)}
+{renderButton('1/x', () => handleTrigFunction('1/'), { flex: 1 })}
+{renderButton('%', () => handleOperation('%'), { flex: 1 })}
+{renderButton('x!', () => handleOperation('x!'), { flex: 1 })}
 </View>
 <View style={styles.row}>
 {renderButton('7', () => handleInput('7'))}
@@ -249,14 +261,14 @@ returnKeyType="done"
 {renderButton('×', () => handleOperation('*'), styles.operatorButton)}
 </View>
 <View style={styles.row}>
-{renderButton('0', () => handleInput('0'), { flex: 2 })}
+{renderButton('0', () => handleInput('0'))}
 {renderButton('.', () => handleInput('.'))}
 {renderButton('÷', () => handleOperation('/'), styles.operatorButton)}
 </View>
 <View style={styles.row}>
-{renderButton('Rnd', () => setInput(prevInput => prevInput + ' 0.8324366828'), styles.secondaryButton)}
-{renderButton('AC', () => handleOperation('AC'), {...styles.operatorButton1, ...styles.boldText}, { color: 'white' })}
-{renderButton('=', () => handleOperation('='), { ...styles.equalsButton, ...styles.boldText }, { color: 'white' })}
+{renderButton('Rnd', () => setInput(prevInput => prevInput + ' 0.8324366828'), { flex: 1 })}
+{renderButton('AC', () => handleOperation('AC'), {...styles.operatorButton1}, { color: 'white' })}
+{renderButton('=', () => handleOperation('='), { flex: 1 }, { fontSize: 24 })}
 </View>
 </View>
 </View>
@@ -264,78 +276,83 @@ returnKeyType="done"
 };
 
 const styles = StyleSheet.create({
+    scrollView: {
+        maxHeight: 200,
+        width:'100%',  // Adjust max height based on your design
+       
+       
+      },
 container: {
 flex: 1,
 // justifyContent: 'center',
 backgroundColor: '#000',
 
 },
-display: {
-    backgroundColor: 'black',
-    borderRadius: 5,
-    minHeight: 200,
+displayContainer: {
+    flex: 1,
     justifyContent: 'flex-end',
-    padding: 5,
+    alignItems: 'flex-end',
+    marginBottom:10,
+    margin:5,
+    
+   
+  },
+display: {
+    
+    backgroundColor: 'white',
+    borderRadius: 10,
+   
+    width: '100%',
+    alignItems: 'flex-end',
+    height: '100%',
+    //  marginBottom:20,
    
 },
-displayText: {
-fontSize: 25,
-color: '#FFF',
-textAlign: 'right',
-},
+input: {
+    height: 140,  // Adjust height based on your design
+    fontSize: 24,
+    alignItems: 'flex-end',  // Start input from the top
+  },
+
 expressionText: {
-fontSize: 20,
-color: '#888',
-textAlign: 'right',
+    color: '#777',
+    fontSize: 20,
+    marginTop:25,
+   
 },
 buttonsContainer: {
-justifyContent: 'flex-end',
-alignItems: 'flex-end',
-marginBottom:5,
+    flex: 3,
+    backgroundColor: 'black',
 },
 row: {
-flexDirection: 'row',
-justifyContent: 'space-between',
+    flex: 1,
+    flexDirection: 'row',
 },
 button: {
-flex: 1,
-justifyContent: 'center',
-alignItems: 'center',
-padding: 8,
-margin: 3,
-borderWidth: 1,
-borderColor: '#333',
-borderRadius: 5,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 0.5,
+    borderColor: 'white',
 
 },
 buttonText: {
-fontSize: 18,
+fontSize: 20,
 color: '#ffa500',
+fontWeight: 'bold',
+
 },
 operatorButton: {
-backgroundColor: '#333',
+    fontSize: 20,
+    color: '#ffa500',
+    fontWeight: 'bold',
+    
 },
 operatorButton1: {
 backgroundColor: 'red',
-fontSize: 25,
+fontSize: 20,
 },
-equalsButton: {
-flex: 1,
-justifyContent: 'center',
-alignItems: 'center',
-paddingVertical: 10,
-margin: 5,
-backgroundColor: 'orange',
-borderWidth: 1,
-borderColor: '#333',
-borderRadius: 5,
-},
-secondaryButton: {
-backgroundColor: '#222',
-},
-boldText: {
-fontWeight: 'bold',
-},
+
 });
 
 export default ScientificCalculator;

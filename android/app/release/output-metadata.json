@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.oneforall",
+  "applicationId": "com.rsl.oneforall",
   "variantName": "release",
   "elements": [
     {

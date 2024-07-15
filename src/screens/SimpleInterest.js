@@ -21,13 +21,16 @@ const SimpleInterest = () => {
     const principalAmount = parseFloat(principal);
     const rateOfInterest = parseFloat(rate);
     const timePeriod = parseFloat(time);
-    if (!isNaN(principalAmount) && !isNaN(rateOfInterest) && !isNaN(timePeriod)) {
+    if (isNaN(principalAmount) || isNaN(rateOfInterest) || isNaN(timePeriod)) {
+      alert('Please fill all input fields correctly.');
+      return;
+    }
       const simpleInterest = (principalAmount * rateOfInterest * timePeriod) / 100;
       const totalAmount = principalAmount + simpleInterest;
       setCalculatedPrincipal(Math.round(principalAmount ));
       setInterest(Math.round(simpleInterest ));
       setTotalAmount(Math.round(totalAmount ));
-    }
+    
   };
   const clearFields = () => {
     setPrincipal("");

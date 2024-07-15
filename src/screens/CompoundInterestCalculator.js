@@ -25,7 +25,7 @@ const CompoundInterestCalculator = () => {
     const t = parseFloat(time);
     const n = frequencyMap[compoundingFrequency];
     if (isNaN(P) || isNaN(r) || isNaN(t) || isNaN(n)) {
-      alert('Please enter valid numbers');
+      alert('Please fill all input fields correctly.');
       return;
     }
     const A = P * Math.pow((1 + r / n), n * t);
