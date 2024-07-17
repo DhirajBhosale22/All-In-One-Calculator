@@ -44,7 +44,7 @@ import LoanCalculator from './src/screens/LoanCalculator';
 import InterestCalculator from './src/screens/InterestCalculator';
 import LoanTenure from './src/screens/LoanTenure';
 
-
+__DEV__ = false;
 // Initialize ads
 const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-4761293324240417/8424909911'; 
 
